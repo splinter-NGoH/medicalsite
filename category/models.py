@@ -9,7 +9,7 @@ class Category(models.Model):
     category_name_inarabic = models.CharField(_("اسم القسم بالعربي"), max_length=255, unique=True)
     slug = models.SlugField(_("اسم القسم في الرابط"), max_length=100, unique=True)
     description = models.TextField(_("الوصف"), max_length=255, blank=True)
-    cat_image = models.ImageField(_("صوره لو في"), upload_to='photos/categories', blank=True)
+    cat_image = models.ImageField(_("صوره لو في"),  blank=True)
 
 
     class Meta:
@@ -26,7 +26,7 @@ class Category(models.Model):
 class HomeSliedes(models.Model):
     title = models.CharField(_("العنوان"), max_length=250)
     description = models.TextField(_("الوصف"))
-    slide_image = models.ImageField(_("صوره"), upload_to='photos/slide_view')
+    slide_image = models.ImageField(_("صوره"))
 
     class Meta:
         verbose_name = _("الصفحة الرئيسية")

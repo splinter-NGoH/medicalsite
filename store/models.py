@@ -12,7 +12,7 @@ class Product(models.Model):
     description     = models.TextField(_("الوصف بالإنجليزي"),  blank=True)
     descriptionin_arabic     = models.TextField(_(" الوصف بالعربي"),  blank=True)
     price           = models.IntegerField(_("السعر"),)
-    images          = models.ImageField(_("الصوره"), upload_to='photos/products')
+    images          = models.ImageField(_("الصوره"))
     is_available    = models.BooleanField(_("متوفر؟"),default=True)
     category        = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date    = models.DateTimeField(_("تاريخ الأضافه"),auto_now_add=True)
