@@ -33,4 +33,4 @@ class HomeSliedes(models.Model):
         verbose_name_plural = _("صور الصفحة الرئيسية")
     
     def __str__(self):
-        return self.title
+        return self.category_name_inarabic

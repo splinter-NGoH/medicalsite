@@ -11,7 +11,7 @@
       <li class="nav-item "><a href="{% url 'home' %}" class="nav-link">Home</a></li>
       <li class="nav-item active"><a href="{% url 'store' %}" class="nav-link">Store المتجر</a></li>
       <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
   </ul>
   
 </div>
@@ -54,7 +54,7 @@
 
         <div class="col-md-4 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20 rounded" style="background-image: url({{product.images.url}});">
+            <a href="{{product.get_url}}" class="block-20 rounded" style="background-image: url({{product.images.url}});">
             </a>
             <div class="text mt-3">
                 <div class="posted mb-3 d-flex">
@@ -64,7 +64,7 @@
                         <span>{{product.created_date|naturaltime}}</span>
                     </div>
                 </div>
-              <h3 class="heading"><a href="#">{{product.product_name_in_inglish}} / {{product.product_name_in_arabic}}</a></h3>
+              <h3 class="heading"><a href="{{product.get_url}}">{{product.product_name_in_inglish}} / {{product.product_name_in_arabic}}</a></h3>
               <p>{{product.description}}</p>
 
               <h3 class="mb-0 font-weight-semibold">£{{product.price}} السعر</h3>
