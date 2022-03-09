@@ -1,0 +1,38 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 26/02/2020 05:30
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.7d337f2dfbba.eot");
+  src: url("./Flaticon.7d337f2dfbba.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.25b3eccdf06e.woff2") format("woff2"),
+       url("./Flaticon.4748a7404983.woff") format("woff"),
+       url("./Flaticon.9e603f345714.ttf") format("truetype"),
+       url("./Flaticon.5c557c27ca04.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.5c557c27ca04.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-chiropractic:before { content: "\f100"; }
+.flaticon-acupuncture:before { content: "\f101"; }
+.flaticon-electrotherapy:before { content: "\f102"; }
+.flaticon-examination:before { content: "\f103"; }
+.flaticon-lymph-nodes:before { content: "\f104"; }
+.flaticon-bone:before { content: "\f105"; }
