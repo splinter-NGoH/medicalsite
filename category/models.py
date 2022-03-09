@@ -1,5 +1,3 @@
-from tabnanny import verbose
-from turtle import title
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -33,4 +31,4 @@ class HomeSliedes(models.Model):
         verbose_name_plural = _("صور الصفحة الرئيسية")
     
     def __str__(self):
-        return self.category_name_inarabic
+        return self.title
