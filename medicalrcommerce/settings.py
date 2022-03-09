@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r&3sjbfzz062(8g2*+4keu6)7yb&u4dq+qi6qa@#ldmx6#icz*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -150,7 +150,7 @@ AWS_LOCATION = 'static'
 
 
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-STATICFILES_STORAGE = 'storage_backends.storage_backends.StaticStorage'
+STATICFILES_STORAGE = 'medicalrcommerce.storage_backends.StaticStorage'
 
 DEFAULT_FILE_STORAGE = 'medicalrcommerce.storage_backends.PublicMediaStorage'
 
