@@ -27,7 +27,7 @@ def store (request, category_slug= None, category_by_mastercategory=None):
         if category_slug != None:
             mastercategory = get_object_or_404(MasterCategory, slug=category_by_mastercategory)
             categories = get_object_or_404(Category, slug=category_slug, master_category=mastercategory)
-            products = Product.objects.filter(category=categories, is_available=True)
+            products = Product.objects.filter(category=categories, is_available=True).order_by('-created_date')
             paginator = Paginator(products, 25) # Show 25 contacts per page.
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
@@ -41,7 +41,7 @@ def store (request, category_slug= None, category_by_mastercategory=None):
     else:
         mastercategory = MasterCategory.objects.all()
         categories = Category.objects.all()
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('-created_date')
         paginator = Paginator(products, 25) # Show 25 contacts per page.
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
