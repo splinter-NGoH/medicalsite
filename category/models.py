@@ -23,7 +23,7 @@ class MasterCategory(models.Model):
 
 
 class Category(models.Model):
-    master_category = models.ForeignKey(MasterCategory, on_delete=models.CASCADE, blank=True, null=True)
+    master_category = models.ForeignKey(MasterCategory, on_delete=models.CASCADE)
     category_name_inenglish = models.CharField(_("اسم القسم بالانجليزي"), max_length=255, unique=True)
     category_name_inarabic = models.CharField(_("اسم القسم بالعربي"), max_length=255, unique=True)
     slug = models.SlugField(_("اسم القسم في الرابط"), max_length=100, unique=True)
