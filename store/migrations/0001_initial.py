@@ -52,7 +52,6 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, verbose_name='الوصف بالإنجليزي')),
                 ('descriptionin_arabic', models.TextField(blank=True, verbose_name=' الوصف بالعربي')),
                 ('price', models.IntegerField(blank=True, null=True, verbose_name='السعر')),
-                ('is_price', models.BooleanField(default=False, verbose_name='إظهار السعر؟')),
                 ('images', models.ImageField(upload_to='', verbose_name='الصوره')),
                 ('is_available', models.BooleanField(default=True, verbose_name='متوفر؟')),
                 ('created_date', models.DateTimeField(auto_now_add=True, verbose_name='تاريخ الأضافه')),
@@ -64,18 +63,5 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'المنتجات',
             },
         ),
-        migrations.CreateModel(
-            name='ProductImage',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('images', models.ImageField(upload_to='', verbose_name='الصوره')),
-                ('created_date', models.DateTimeField(auto_now_add=True, verbose_name='تاريخ الأضافه')),
-                ('modified_date', models.DateTimeField(auto_now=True, verbose_name='اخر تعديل')),
-                ('product', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='store.product')),
-            ],
-            options={
-                'verbose_name': 'صورة المنتج',
-                'verbose_name_plural': 'صور المنتجات',
-            },
-        ),
+       
     ]
