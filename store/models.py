@@ -15,6 +15,7 @@ class Product(models.Model):
     is_price           = models.BooleanField(_("إظهار السعر؟"), default=False)
     images          = models.ImageField(_("الصوره") )
     is_available    = models.BooleanField(_("متوفر؟"),default=True)
+    tesst    = models.BooleanField(_("توفر؟"),default=True)
     category        = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date    = models.DateTimeField(_("تاريخ الأضافه"),auto_now_add=True)
     modified_date   = models.DateTimeField(_("اخر تعديل"),auto_now=True)
