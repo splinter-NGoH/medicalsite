@@ -11,7 +11,8 @@ class Product(models.Model):
     slug            = models.SlugField(_("اسم المنتج في الرابط"), max_length=200, unique=True)
     description     = models.TextField(_("الوصف بالإنجليزي"),  blank=True)
     descriptionin_arabic     = models.TextField(_(" الوصف بالعربي"),  blank=True)
-    price           = models.IntegerField(_("السعر"),)
+    price           = models.IntegerField(_("السعر"), blank=True, null=True)
+    is_price           = models.BooleanField(_("إظهار السعر؟"), default=False)
     images          = models.ImageField(_("الصوره") )
     is_available    = models.BooleanField(_("متوفر؟"),default=True)
     category        = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -23,10 +24,25 @@ class Product(models.Model):
         verbose_name = _("المنتج")
         verbose_name_plural = _("المنتجات")
     def get_url(self):
-        return reverse('product_detail', args=[self.category.slug, self.slug])
+        return reverse('product_detail', args=[self.category.master_category.slug, self.category.slug, self.slug])
 
     def __str__(self):
         return self.product_name_in_arabic
+
+
+class ProductImage(models.Model):
+    images          = models.ImageField(_("الصوره") )
+    product        = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+    created_date    = models.DateTimeField(_("تاريخ الأضافه"),auto_now_add=True)
+    modified_date   = models.DateTimeField(_("اخر تعديل"),auto_now=True)
+
+
+    class Meta:
+        verbose_name = _("صورة المنتج")
+        verbose_name_plural = _("صور المنتجات")
+
+    def __str__(self):
+        return self.product.product_name_in_arabic
 
 
 class CustomerRequests(models.Model):

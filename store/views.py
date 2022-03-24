@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .models import Product
-from category.models import Category, HomeSliedes
+from .models import Product, ProductImage
+from category.models import Category, HomeSliedes, MasterCategory
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-def store (request, category_slug= None):
+def store (request, category_slug= None, category_by_mastercategory=None):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
@@ -23,24 +23,36 @@ def store (request, category_slug= None):
     home_slides = HomeSliedes.objects.all()
     products = None
     categories = None
-    if category_slug != None:
-        categories = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=categories, is_available=True)
-        paginator = Paginator(products, 25) # Show 25 contacts per page.
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
+    if category_by_mastercategory != None:
+        if category_slug != None:
+            mastercategory = get_object_or_404(MasterCategory, slug=category_by_mastercategory)
+            categories = get_object_or_404(Category, slug=category_slug, master_category=mastercategory)
+            products = Product.objects.filter(category=categories, is_available=True)
+            paginator = Paginator(products, 25) # Show 25 contacts per page.
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+        else:
+            mastercategory = get_object_or_404(MasterCategory, slug=category_by_mastercategory)
+            categories = Category.objects.filter(master_category=mastercategory)
+            products = Product.objects.filter(category__id__in=categories , is_available=True).order_by('-created_date')
+            paginator = Paginator(products, 25) # Show 25 contacts per page.
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
     else:
-        products = Product.objects.all().filter(is_available=True).order_by('id')
+        mastercategory = MasterCategory.objects.all()
+        categories = Category.objects.all()
+        products = Product.objects.all()
         paginator = Paginator(products, 25) # Show 25 contacts per page.
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-    
-    return render(request, 'store/store.html', {'products': page_obj, "categories":categories, "home_slides":home_slides})
+
+    return render(request, 'store/store.html', {'products': page_obj, "categories":categories, "home_slides":home_slides, "mastercategory":mastercategory})
 
 
-def product_detail (request, category_slug, product_slug):
+def product_detail (request, category_slug, product_slug, category_by_mastercategory):
     product = get_object_or_404(Product,category__slug=category_slug, slug=product_slug)
-    return render(request, 'store/product_detail.html', {"product": product})
+    product_image = ProductImage.objects.filter(product=product)
+    return render(request, 'store/product_detail.html', {"product": product, "product_image":product_image})
 
 
 def search(request):

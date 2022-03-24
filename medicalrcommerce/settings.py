@@ -82,11 +82,15 @@ WSGI_APPLICATION = 'medicalrcommerce.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+ 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'medicalsite',
+        'USER': 'postgres',
+        'PASSWORD': 'Casherboy1',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -128,13 +132,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -152,7 +150,11 @@ AWS_LOCATION = 'static'
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 STATICFILES_STORAGE = 'medicalrcommerce.storage_backends.StaticStorage'
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 DEFAULT_FILE_STORAGE = 'medicalrcommerce.storage_backends.PublicMediaStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR /'media'
 
 # media files configuration
 

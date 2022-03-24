@@ -5,7 +5,7 @@
 <div class="collapse navbar-collapse" id="ftco-nav">
   <ul class="navbar-nav mr-auto">
       <li class="nav-item "><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-      <li class="nav-item active"><a href="{% url 'store' %}" class="nav-link">Store المتجر</a></li>
+      <li class="nav-item active"><a href="{% url 'store' %}" class="nav-link">Products المتجر</a></li>
       <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
     <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
   </ul>
@@ -41,19 +41,52 @@
           <h2 class="text-right">{{product.product_name_in_arabic}}</h2>
           <p class="text-right">{{product.descriptionin_arabic}}</p>
           <div class="text-right"> 
+            {% if product.is_price %}
           <h3 class="mb-0 font-weight-semibold">£{{product.price}} السعر</h3>
           <p class="text-muted">جنيه مصري</p> 
-      
-          <div class="container"> 
-            <div class="row"> 
-            
-          <p><a href="tel: 5454564646" class="btn btn-primary">اتصل على: 5454564646</a></p>
-          <p><a href="tel: 5454564646" class="btn btn-info">اتصل على: 5454564646</a></p>
-          <p><a href="tel: 5454564646" class="btn btn-secondary">اتصل على: 5454564646</a></p>
-     
-      
+          {% endif %}
+          
+          
+		<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container-fluid px-md-0">
+				<div class="row no-gutters">
+          {% for image in product_image %}
+          <div class="col-md-3 ftco-animate">
+            <div class="work img d-flex align-items-center" style="background-image: url({{image.images.url}});">
+            	<a href="{{image.images.url}}" class="icon image-popup d-flex justify-content-center align-items-center">
+	    					<span class="fa fa-expand"></span>
+	    				</a>
+            	<div class="desc w-100 px-4 text-center pt-5 mt-5">
+	              <div class="text w-100 mb-3 mt-4">
+	              	<h2><a href="{{image.images.url}}">{{image.product.product_name_in_arabic}}</a></h2>
+	              </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
+			</div>
+		</section>	
+
+    <section class="ftco-section">
+
+          <div class="container">
+              <div class="text-right ">
+          <h3 class="mb-0 font-weight-semibold">للاستفسار الأتصال على الأرقام الأتية</h3>
+
+          <p><a href="tel: 01068300030" class="btn btn-primary btn-lg">اتصل على: 01068300030 </a></p>
+          <p>او</p>
+
+          <a href="tel: 01092224009" >
+          <button type="button" class="btn btn-default">اتصل على: 01092224009 </button>
+        </a>
+
+          <p><a href="tel: 01092224100" class="btn btn-default">اتصل على: 01092224100</a></p>
+</div>
       </div>
+		</section>	
+
+    
       </div>
 
         </div> <!-- .col-md-8 -->
@@ -73,7 +106,7 @@
           <div class="sidebar-box ftco-animate">
             <div class="categories">
               <h3>Category / الأقسام</h3>
-              {% for cat_link in links %}
+              {% for cat_link in masterlinks %}
               <li><a href="{{cat_link.get_url}}">{{cat_link.category_name_inenglish}}    {{cat_link.category_name_inarabic}}<span class="fa fa-chevron-right"></span></a></li>
               {% endfor %}
             </div>

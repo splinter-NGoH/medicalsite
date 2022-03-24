@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, CustomerRequests, HomeReviews
+from .models import Product, CustomerRequests, HomeReviews, ProductImage
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('product_name_in_inglish', 'product_name_in_arabic', 'slug', 'price', 'is_available',  "created_date")
@@ -27,3 +27,11 @@ class HomeReviewsAdmin(admin.ModelAdmin):
 
     
 admin.site.register(HomeReviews, HomeReviewsAdmin)
+
+
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ('product', 'images', 'created_date', 'modified_date')
+    filter_fields = ('created_date', 'modified_date')
+
+    
+admin.site.register(ProductImage, ProductImageAdmin)

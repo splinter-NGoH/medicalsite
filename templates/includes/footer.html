@@ -71,7 +71,24 @@
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+<!--   Core JS Files   -->
+<script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+<script>
+  var win = navigator.platform.indexOf('Win') > -1;
+  if (win && document.querySelector('#sidenav-scrollbar')) {
+    var options = {
+      damping: '0.5'
+    }
+    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+  }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{% static 'assets/js/argon-dashboard.min.js' %}"></script>
 <script src="{% static 'medicalassets/js/jquery.min.js' %} "></script>
 <script src="{% static 'medicalassets/js/jquery-migrate-3.0.1.min.js' %} "></script>
 <script src="{% static 'medicalassets/js/popper.min.js' %} "></script>

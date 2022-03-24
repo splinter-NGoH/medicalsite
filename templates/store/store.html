@@ -3,13 +3,22 @@
 {% load humanize %}
 
 {% block content %}
+<!--     Fonts and icons     -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+<!-- Nucleo Icons -->
+<link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+<link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+<!-- CSS Files -->
+<link id="pagestyle" href="{% static 'assets/css/argon-dashboard.css' %}" rel="stylesheet" />
 
 </div>
 <div class="collapse navbar-collapse" id="ftco-nav">
-    
   <ul class="navbar-nav mr-auto">
       <li class="nav-item "><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-      <li class="nav-item active"><a href="{% url 'store' %}" class="nav-link">Store المتجر</a></li>
+      <li class="nav-item active"><a href="{% url 'store' %}" class="nav-link">Products المتجر</a></li>
       <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
     <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
   </ul>
@@ -19,6 +28,9 @@
 </div>
 
 </nav>
+
+
+
 <section class="ftco-section">
 
 <div class="sidebar-box">
@@ -33,20 +45,49 @@
     </form>
   </div>
 
-</section>
-       
+<a href="{% url 'store' %}">
+  <button type="button" class="btn bg-gradient-primary btn-lg w-100">All Products / جميع المنتجات</button>
+</a>
+
 
 {% if products %}
 
 <section class="ftco-section">
     <div class="container">
+      <h3 class="text-center" >Choose Category / اختر من الأقسام</h3>
+    
+      {% for mascat in masterlinks %}
+      {% if mascat.slug in request.path  %}
+      <a href="{{mascat.get_url}}">
+      <button type="button" class="btn bg-gradient-primary btn-lg w-100">{{mascat.category_name_inenglish}}</button>
+    </a>
+    {% else %}
+    <a href="{{mascat.get_url}}">
+      <button type="button" class="btn btn-outline-primary btn-lg w-100">{{mascat.category_name_inenglish}}</button>
+    </a>
+    {% endif %}
+      {% endfor %}
+
+
       <div class="row">
         <div class="sidebar-box ftco-animate">
             <div class="categories">
-              <h3>Category / الأقسام</h3>
-              {% for cat_link in links %}
-              <li><a href="{{cat_link.get_url}}">{{cat_link.category_name_inenglish}}    {{cat_link.category_name_inarabic}}<span class="fa fa-chevron-right"></span></a></li>
+              <h3  class="text-center"></h3>
+              {% if categories.count > 1 %}
+              {% for cat_link in categories %}
+              <a href="{{cat_link.get_url}}">
+              <button type="button" class="btn btn-outline-danger">{{cat_link.category_name_inenglish}}    {{cat_link.category_name_inarabic}}</button>
+            </a>
+
               {% endfor %}
+              {% else %}
+              <a href="{{categories.get_url}}">
+                <button type="button" class="btn bg-gradient-danger btn-lg">
+                  <span>{{categories.category_name_inenglish}}    {{categories.category_name_inarabic}}</span>
+                  <span class="badge badge-primary ">Selected</span>
+                </button>
+              </a>
+              {% endif %}
             </div>
           </div>
 
@@ -66,10 +107,10 @@
                 </div>
               <h3 class="heading"><a href="{{product.get_url}}">{{product.product_name_in_inglish}} / {{product.product_name_in_arabic}}</a></h3>
               <p>{{product.description}}</p>
-
+                {% if product.is_price %}
               <h3 class="mb-0 font-weight-semibold">£{{product.price}} السعر</h3>
               <p class="text-muted">جنيه مصري</p> 
-
+              {% endif %}
               <p><a href="{{product.get_url}}" class="btn btn-primary">Order Now / اطلب الأن</a></p>
             </div>
           </div>
@@ -117,7 +158,7 @@
                           Oops! No products for this Category  
                         </div>
                         <div class="card-body">
-                          <h5 class="card-title">لا يوجد منجات في هذا القسم حاليا</h5>
+                          <h5 class="card-title">لا يوجد منتجات في هذا القسم حاليا</h5>
                           <a href="{% url 'store' %}" class="btn btn-primary">Store</a>
                         </div>
                         <div class="card-footer text-muted">
@@ -128,11 +169,7 @@
                 {% endif %}
                 
   
-
-<section class="ftco-section">
-
- 
-</section>
+              </section>
 
 
 {% endblock content %}
