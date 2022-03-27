@@ -11,7 +11,7 @@ class Product(models.Model):
     slug            = models.SlugField(_("اسم المنتج في الرابط"), max_length=200, unique=True)
     description     = models.TextField(_("الوصف بالإنجليزي"),  blank=True)
     descriptionin_arabic     = models.TextField(_(" الوصف بالعربي"),  blank=True)
-    price           = models.BigIntegerField(_("السعر"), blank=True,default=0)
+    price           = models.CharField(_("السعر"), max_length=245,blank=True,default=0)
     is_price           = models.BooleanField(_("إظهار السعر؟"), default=False)
     images          = models.ImageField(_("الصوره") )
     is_available    = models.BooleanField(_("متوفر؟"),default=True)
