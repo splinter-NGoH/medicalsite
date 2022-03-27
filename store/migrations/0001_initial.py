@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(max_length=200, unique=True, verbose_name='اسم المنتج في الرابط')),
                 ('description', models.TextField(blank=True, verbose_name='الوصف بالإنجليزي')),
                 ('descriptionin_arabic', models.TextField(blank=True, verbose_name=' الوصف بالعربي')),
-                ('price', models.IntegerField(blank=True, null=True, verbose_name='السعر')),
+                ('price', models.IntegerField(blank=True, null=True,default=0 verbose_name='السعر')),
                 ('is_price', models.BooleanField(default=False, verbose_name='إظهار السعر؟')),
                 ('images', models.ImageField(upload_to='', verbose_name='الصوره')),
                 ('is_available', models.BooleanField(default=True, verbose_name='متوفر؟')),

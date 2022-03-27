@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='price',
-            field=models.IntegerField(blank=True, default='', verbose_name='السعر'),
+            field=models.IntegerField(blank=True, default=0, verbose_name='السعر'),
             preserve_default=False,
         ),
     ]
