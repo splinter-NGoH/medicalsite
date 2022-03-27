@@ -10,11 +10,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='product',
-            name='tesst',
-            field=models.BigIntegerField(blank=True, default=0),
-        ),
+        
         migrations.AlterField(
             model_name='product',
             name='price',
