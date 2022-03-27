@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.utils.translation import gettext as _
 from category.models import Category
@@ -12,6 +13,7 @@ class Product(models.Model):
     description     = models.TextField(_("الوصف بالإنجليزي"),  blank=True)
     descriptionin_arabic     = models.TextField(_(" الوصف بالعربي"),  blank=True)
     price           = models.CharField(_("السعر"), max_length=245,blank=True,default=0)
+    tesst = models.CharField(blank=True, max_length=245, null=True)
     is_price           = models.BooleanField(_("إظهار السعر؟"), default=False)
     images          = models.ImageField(_("الصوره") )
     is_available    = models.BooleanField(_("متوفر؟"),default=True)
