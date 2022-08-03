@@ -4,10 +4,10 @@ from django.utils.translation import gettext as _
 
 
 class MasterCategory(models.Model):
-    category_name_inenglish = models.CharField(_("اسم القسم بالانجليزي"), max_length=255, unique=True)
-    category_name_inarabic = models.CharField(_("اسم القسم بالعربي"), max_length=255, unique=True)
+    category_name_inenglish = models.CharField(_("اسم القسم بالانجليزي"), max_length=255, unique=True, blank=True, null=True)
+    category_name_inarabic = models.CharField(_("اسم القسم بالعربي"), max_length=255, unique=True, blank=True, null=True)
     slug = models.SlugField(_("اسم القسم في الرابط"), max_length=100, unique=True)
-    description = models.TextField(_("الوصف"), max_length=255, blank=True)
+    description = models.TextField(_("الوصف"), max_length=255, blank=True, null=True)
     cat_image = models.ImageField(_("صوره لو في"),  blank=True)
 
 
@@ -24,10 +24,10 @@ class MasterCategory(models.Model):
 
 class Category(models.Model):
     master_category = models.ForeignKey(MasterCategory, on_delete=models.CASCADE)
-    category_name_inenglish = models.CharField(_("اسم القسم بالانجليزي"), max_length=255, unique=True)
-    category_name_inarabic = models.CharField(_("اسم القسم بالعربي"), max_length=255, unique=True)
+    category_name_inenglish = models.CharField(_("اسم القسم بالانجليزي"), max_length=255, unique=True, blank=True, null=True)
+    category_name_inarabic = models.CharField(_("اسم القسم بالعربي"), max_length=255, unique=True, blank=True, null=True)
     slug = models.SlugField(_("اسم القسم في الرابط"), max_length=100, unique=True)
-    description = models.TextField(_("الوصف"), max_length=255, blank=True)
+    description = models.TextField(_("الوصف"), max_length=255, blank=True, null=True)
     cat_image = models.ImageField(_("صوره لو في"),  blank=True)
 
 
@@ -44,7 +44,7 @@ class Category(models.Model):
 
 class HomeSliedes(models.Model):
     title = models.CharField(_("العنوان"), max_length=250)
-    description = models.TextField(_("الوصف"))
+    description = models.TextField(_("الوصف"), blank=True, null=True)
     slide_image = models.ImageField(_("صوره"))
 
     class Meta:
