@@ -7,11 +7,11 @@ from django.core.validators import RegexValidator
 
 
 class Product(models.Model):
-    product_name_in_inglish    = models.CharField(_("اسم المنتج بالانجليزي"), max_length=200, unique=True)
-    product_name_in_arabic   = models.CharField(_("اسم المنتج بالعربي"),max_length=200, unique=True)
+    product_name_in_inglish    = models.CharField(_("اسم المنتج بالانجليزي"), max_length=200, unique=True, blank=True, null=True)
+    product_name_in_arabic   = models.CharField(_("اسم المنتج بالعربي"),max_length=200, unique=True, blank=True, null=True)
     slug            = models.SlugField(_("اسم المنتج في الرابط"), max_length=200, unique=True)
-    description     = models.TextField(_("الوصف بالإنجليزي"),  blank=True)
-    descriptionin_arabic     = models.TextField(_(" الوصف بالعربي"),  blank=True)
+    description     = models.TextField(_("الوصف بالإنجليزي"),  blank=True, blank=True, null=True)
+    descriptionin_arabic     = models.TextField(_(" الوصف بالعربي"),  blank=True, blank=True, null=True)
     price           = models.CharField(_("السعر"), max_length=245,blank=True,default=0)
     is_price           = models.BooleanField(_("إظهار السعر؟"), default=False)
     images          = models.ImageField(_("الصوره") )
