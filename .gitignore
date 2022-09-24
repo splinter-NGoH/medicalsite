@@ -116,7 +116,7 @@ celerybeat.pid
 .venv
 env/
 venv/
-ENV/
+ENV/\medicalcenter\medicalsite\medicalrcommerce\settings.py
 env.bak/
 venv.bak/
 
