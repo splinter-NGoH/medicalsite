@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'medicalrcommerce.wsgi.application'
  
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'medicalsite',
-        'USER': 'postgres',
-        'PASSWORD': 'Casherboy1',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'amgadedw_medical',
+        'USER': 'amgadedw_medical',
+        'PASSWORD': 'K)6uX_az]LUb',
         'HOST': '127.0.0.1',
-        'PORT': '5432'
+        'PORT': '3306'
     }
 }
 
