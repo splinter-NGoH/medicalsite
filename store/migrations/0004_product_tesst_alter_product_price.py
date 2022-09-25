@@ -17,9 +17,5 @@ class Migration(migrations.Migration):
             field=models.CharField(blank=True, default=0, max_length=245, verbose_name='السعر'),
         ),
 
-        migrations.AlterField(
-            model_name='product',
-            name='tesst',
-            field=models.CharField(blank=True, default='', null=True, verbose_name='السعر'),
-        ),
+
     ]
