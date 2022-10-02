@@ -133,7 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = 'medicalapp-project'
@@ -150,7 +154,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 # STATICFILES_STORAGE = 'medicalrcommerce.storage_backends.StaticStorage'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # DEFAULT_FILE_STORAGE = 'medicalrcommerce.storage_backends.PublicMediaStorage'
 
 MEDIA_URL = '/media/'
