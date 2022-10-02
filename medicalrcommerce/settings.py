@@ -134,24 +134,24 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'medicalapp-project'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'medicalapp-project'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = 'public-read'
-AWS_LOCATION = 'static'
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = 'public-read'
+# AWS_LOCATION = 'static'
 
 
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-STATICFILES_STORAGE = 'medicalrcommerce.storage_backends.StaticStorage'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+# STATICFILES_STORAGE = 'medicalrcommerce.storage_backends.StaticStorage'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-DEFAULT_FILE_STORAGE = 'medicalrcommerce.storage_backends.PublicMediaStorage'
+# DEFAULT_FILE_STORAGE = 'medicalrcommerce.storage_backends.PublicMediaStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
